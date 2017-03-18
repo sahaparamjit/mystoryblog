@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Posts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Date</th>
+      <th class="text-center" colspan="3">Operations</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= h truncate(post.title, :length => 60) %></td>
+        <td><%= h truncate(post.body, :length => 45) %></td>
+        <td><%= post.created_at.to_date %></td>
+        <td><%= link_to 'Show', post, class:'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_post_path(post), class:'btn btn-warning' %></td>
+        <td><%= link_to 'Delete', post, class:'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path, class:'btn btn-primary' %>
